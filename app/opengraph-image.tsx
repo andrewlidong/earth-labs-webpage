@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 
 export const runtime = "edge";
-export const alt = "earth-labs — foundation models for Earth's crust";
+export const alt = "earth-labs.ai";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -46,15 +46,13 @@ export default async function OG() {
 
         <div
           style={{
-            fontSize: 92,
+            fontSize: 168,
             lineHeight: 1.0,
-            letterSpacing: -3,
+            letterSpacing: -6,
             display: "flex",
-            flexDirection: "column",
           }}
         >
-          <div>foundation models</div>
-          <div style={{ color: "#8a9099" }}>for the earth&apos;s crust.</div>
+          earth-labs<span style={{ color: "#8a9099" }}>.ai</span>
         </div>
 
         <div
@@ -66,8 +64,8 @@ export default async function OG() {
             color: "#8a9099",
           }}
         >
-          <div>jennifer-h2 · subsurface foundation model</div>
-          <div>earth-labs.ai</div>
+          <div>jennifer-h2</div>
+          <div>subsurface foundation model</div>
         </div>
       </div>
     ),
