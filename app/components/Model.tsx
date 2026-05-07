@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Section } from "./Section";
 
 export default function Model() {
@@ -32,6 +33,21 @@ export default function Model() {
           full posterior over subsurface properties. probabilistic zero-shot
           inversion in <span className="text-fg">minutes, not weeks</span>.
         </Card>
+      </div>
+
+      <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3 text-mono text-[11px] uppercase tracking-widest">
+        <Link
+          href="/research"
+          className="text-accent hover:text-accent-hot transition-colors"
+        >
+          → read the full method
+        </Link>
+        <a
+          href="/jennifer-h2.pdf"
+          className="text-fg-dim hover:text-accent transition-colors"
+        >
+          ↓ proposal · pdf
+        </a>
       </div>
     </Section>
   );
