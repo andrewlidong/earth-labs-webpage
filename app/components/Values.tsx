@@ -31,14 +31,7 @@ export default function Values() {
       id="values"
       num="05"
       label="values"
-      title={
-        <>
-          the way we work.{" "}
-          <span className="text-fg-dim">
-            in the lineage of david packard and bill hewlett.
-          </span>
-        </>
-      }
+      title={<>the way we work.</>}
     >
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-[var(--border)] border hairline">
         {values.map((v) => (
@@ -55,18 +48,6 @@ export default function Values() {
             <div className="text-fg-dim text-sm leading-relaxed">{v.body}</div>
           </div>
         ))}
-      </div>
-
-      <div className="mt-6 text-mono text-[10px] uppercase tracking-widest text-fg-mute">
-        ↗{" "}
-        <a
-          href="https://en.wikipedia.org/wiki/The_HP_Way"
-          target="_blank"
-          rel="noreferrer noopener"
-          className="hover:text-accent transition-colors"
-        >
-          the hp way · wikipedia
-        </a>
       </div>
     </Section>
   );
