@@ -60,8 +60,7 @@ export default function Team() {
       label="team"
       title={
         <>
-          <span className="text-fg-dim">two founders.</span> a project team
-          spanning oslo, austin, and utrecht.
+          <span className="text-fg-dim">two founders.</span>
         </>
       }
     >
