@@ -5,38 +5,23 @@ type Value = { num: string; theme: string; body: string };
 const values: Value[] = [
   {
     num: "01",
-    theme: "profit",
-    body: "To achieve sufficient profit to finance our company growth and to provide the resources we need to achieve our other corporate objectives.",
+    theme: "focus",
+    body: "Enter only fields where we can do something no one else will. Pass on easy money in spaces where we would be average.",
   },
   {
     num: "02",
-    theme: "customers",
-    body: "To provide products and services of the greatest possible value to our customers, thereby gaining and holding their respect and loyalty.",
+    theme: "trust",
+    body: "Hire deliberately. Then get out of the way. Define the destination precisely; leave the route to the person closest to it.",
   },
   {
     num: "03",
-    theme: "fields of interest",
-    body: "To enter new fields only when the ideas we have, together with our technical, manufacturing and marketing skills, assure that we can make a needed and profitable contribution to the field.",
+    theme: "craft over theater",
+    body: "Build things people actually use. Real problems, real users, real measurements. No demos that don't survive contact with the world.",
   },
   {
     num: "04",
-    theme: "growth",
-    body: "To let our growth be limited only by our profits and our ability to develop and produce technical products that satisfy real customer needs.",
-  },
-  {
-    num: "05",
-    theme: "our people",
-    body: "To help our own people share in the company's success, which they made possible: to provide job security based on their performance, to recognize their individual achievements, and to help them gain a sense of satisfaction and accomplishment from their work.",
-  },
-  {
-    num: "06",
-    theme: "management",
-    body: "To foster initiative and creativity by allowing the individual great freedom of action in attaining well-defined objectives.",
-  },
-  {
-    num: "07",
-    theme: "citizenship",
-    body: "To honor our obligations to society by being an economic, intellectual and social asset to each nation and each community in which we operate.",
+    theme: "contribution",
+    body: "Leave the field better than we found it. Open data, open weights, public benchmarks. Earn profit because we contributed, not because we hoarded.",
   },
 ];
 
@@ -48,10 +33,9 @@ export default function Values() {
       label="values"
       title={
         <>
-          the hp way.{" "}
+          the way we work.{" "}
           <span className="text-fg-dim">
-            seven corporate objectives, articulated by david packard and bill
-            hewlett, 1977. how we run earth-labs.
+            in the lineage of david packard and bill hewlett.
           </span>
         </>
       }
