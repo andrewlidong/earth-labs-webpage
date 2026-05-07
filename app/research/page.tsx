@@ -144,28 +144,8 @@ export default function ResearchPage() {
           </div>
 
           <div className="lg:col-span-5">
-            <div className="bg-[var(--bg-elev)] border hairline p-5 font-mono text-[11px] leading-[1.7] text-fg-dim whitespace-pre overflow-x-auto">
-{`  context blocks       ┌──────────────┐
-  ─ visible ─────────▶ │  encoder f_θ │ ─┐
-                       └──────────────┘  │
-                                         ▼
-                                    z_context
-                                         │
-                                         ▼
-                       ┌──────────────┐
-                       │ predictor g_φ│ ─┐
-                       └──────────────┘  │
-                              ▲           ▼
-                              │      ẑ_target
-                              │           │
-                              z           ▼
-                                     ┌──────────┐
-                                     │  loss    │  ◀─── z_target
-                                     └──────────┘             ▲
-                                                              │
-                       ┌──────────────┐                       │
-  target blocks  ────▶ │target enc ema│ ──────────────────────┘
-  ─ masked ─────────   └──────────────┘`}
+            <div className="bg-[var(--bg-elev)] border hairline p-5">
+              <JEPADiagram />
             </div>
             <div className="text-mono text-[10px] uppercase tracking-widest text-fg-mute mt-3">
               fig. 1 · jepa pipeline · adapted from assran et al. 2023
@@ -440,6 +420,162 @@ function Block({
 
 function Mono({ children }: { children: React.ReactNode }) {
   return <span className="text-mono text-fg">{children}</span>;
+}
+
+function JEPADiagram() {
+  // colors via CSS vars on the page theme
+  const stroke = "var(--border-strong)";
+  const fill = "var(--bg-card)";
+  const fg = "var(--fg)";
+  const dim = "var(--fg-dim)";
+  const mute = "var(--fg-mute)";
+  const accent = "var(--accent)";
+  const mono = "ui-monospace, JetBrains Mono, Menlo, monospace";
+
+  return (
+    <svg
+      viewBox="0 0 720 220"
+      role="img"
+      aria-label="JEPA architecture: context and target encoders feeding a predictor and loss"
+      className="w-full h-auto"
+    >
+      <defs>
+        <marker
+          id="ja-arrow"
+          viewBox="0 0 10 10"
+          refX="9"
+          refY="5"
+          markerWidth="5"
+          markerHeight="5"
+          orient="auto"
+        >
+          <path d="M 0 0 L 10 5 L 0 10 Z" fill={fg} />
+        </marker>
+        <marker
+          id="ja-arrow-dim"
+          viewBox="0 0 10 10"
+          refX="9"
+          refY="5"
+          markerWidth="5"
+          markerHeight="5"
+          orient="auto"
+        >
+          <path d="M 0 0 L 10 5 L 0 10 Z" fill={dim} />
+        </marker>
+      </defs>
+
+      {/* Lane labels */}
+      <g
+        fontFamily={mono}
+        fontSize="10"
+        fill={mute}
+        style={{ letterSpacing: "0.08em", textTransform: "uppercase" }}
+      >
+        <text x="20" y="32">context · visible</text>
+        <text x="20" y="200">target · masked</text>
+      </g>
+
+      {/* Boxes — context lane */}
+      <g fill={fill} stroke={stroke} strokeWidth="1">
+        <rect x="20" y="42" width="90" height="36" rx="1" />
+        <rect x="160" y="42" width="110" height="36" rx="1" />
+        <rect x="320" y="42" width="110" height="36" rx="1" />
+      </g>
+
+      {/* Boxes — target lane (ema dashed) */}
+      <g fill={fill} stroke={stroke} strokeWidth="1">
+        <rect x="20" y="142" width="90" height="36" rx="1" />
+      </g>
+      <g fill={fill} stroke={stroke} strokeWidth="1" strokeDasharray="3 3">
+        <rect x="160" y="142" width="110" height="36" rx="1" />
+      </g>
+
+      {/* Arrows — context lane (solid) */}
+      <g stroke={fg} strokeWidth="1" fill="none">
+        <line x1="110" y1="60" x2="158" y2="60" markerEnd="url(#ja-arrow)" />
+        <line x1="270" y1="60" x2="318" y2="60" markerEnd="url(#ja-arrow)" />
+        <line x1="430" y1="60" x2="555" y2="60" markerEnd="url(#ja-arrow)" />
+        <path
+          d="M 580 70 Q 595 90 600 95"
+          markerEnd="url(#ja-arrow)"
+        />
+      </g>
+
+      {/* Arrows — target lane (dashed for stop-gradient) */}
+      <g stroke={dim} strokeWidth="1" fill="none">
+        <line x1="110" y1="160" x2="158" y2="160" markerEnd="url(#ja-arrow-dim)" />
+        <line
+          x1="270"
+          y1="160"
+          x2="555"
+          y2="160"
+          strokeDasharray="3 3"
+          markerEnd="url(#ja-arrow-dim)"
+        />
+        <path
+          d="M 580 150 Q 595 130 600 125"
+          strokeDasharray="3 3"
+          markerEnd="url(#ja-arrow-dim)"
+        />
+      </g>
+
+      {/* Loss node */}
+      <circle
+        cx="630"
+        cy="110"
+        r="28"
+        fill="var(--bg)"
+        stroke={accent}
+        strokeWidth="1.4"
+      />
+
+      {/* Box labels */}
+      <g fontFamily={mono} fontSize="11" fill={fg} textAnchor="middle">
+        {/* context */}
+        <text x="65" y="65">context</text>
+        {/* encoder f_θ */}
+        <text x="215" y="58">encoder</text>
+        <text x="215" y="72" fill={dim}>
+          f<tspan fontSize="9" dy="2">θ</tspan>
+        </text>
+        {/* predictor g_φ */}
+        <text x="375" y="58">predictor</text>
+        <text x="375" y="72" fill={dim}>
+          g<tspan fontSize="9" dy="2">φ</tspan>
+        </text>
+        {/* target */}
+        <text x="65" y="165">target</text>
+        {/* ema enc f_ξ */}
+        <text x="215" y="158">ema enc.</text>
+        <text x="215" y="172" fill={dim}>
+          f<tspan fontSize="9" dy="2">ξ</tspan>
+        </text>
+        {/* loss */}
+        <text x="630" y="108" fill={accent}>
+          L
+        </text>
+        <text x="630" y="120" fill={dim} fontSize="9">
+          loss
+        </text>
+      </g>
+
+      {/* Inline arrow labels */}
+      <g
+        fontFamily={mono}
+        fontSize="10"
+        fill={mute}
+        textAnchor="middle"
+        style={{ letterSpacing: "0.04em" }}
+      >
+        <text x="294" y="52">z_ctx</text>
+        <text x="492" y="52">ẑ_target</text>
+        <text x="412" y="152">z_target</text>
+        <text x="412" y="174" fill={mute}>
+          stop-grad
+        </text>
+      </g>
+    </svg>
+  );
 }
 
 function ObjCard({
