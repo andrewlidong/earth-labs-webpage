@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
 
 // A small fixed widget bottom-right that mimics a live training monitor:
 // 8 GPU pulse cells, a moving loss sparkline, a step counter, throughput.
@@ -110,12 +111,19 @@ export default function TrainingWidget() {
   return (
     <div className="fixed bottom-4 right-4 z-40 w-[260px] border hairline bg-[var(--bg-card)]/95 backdrop-blur-md text-mono text-[11px] hidden md:block">
       <div className="flex items-center justify-between px-3 py-2 border-b hairline">
-        <div className="flex items-center gap-2">
+        <Link
+          href="/console"
+          className="flex items-center gap-2 group"
+          title="open console"
+        >
           <span className="w-1.5 h-1.5 bg-green pulse" />
-          <span className="text-fg-dim uppercase tracking-widest text-[10px]">
+          <span className="text-fg-dim group-hover:text-accent transition-colors uppercase tracking-widest text-[10px]">
             training · jennifer-h2
           </span>
-        </div>
+          <span className="text-fg-mute group-hover:text-accent transition-colors text-[10px]">
+            ↗
+          </span>
+        </Link>
         <button
           onClick={() => setOpen(false)}
           className="text-fg-mute hover:text-fg text-[12px]"
