@@ -54,16 +54,7 @@ export default function Team() {
   const collaborators = team.filter((m) => m.group === "collaborators");
 
   return (
-    <Section
-      id="team"
-      num="04"
-      label="team"
-      title={
-        <>
-          <span className="text-fg-dim">two founders.</span>
-        </>
-      }
-    >
+    <Section id="team" num="04" label="team">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-[var(--border)] border hairline">
         {founders.map((f) => (
           <Card key={f.name} member={f} prominent />
