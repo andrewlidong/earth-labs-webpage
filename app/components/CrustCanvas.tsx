@@ -67,6 +67,12 @@ const frag = /* glsl */ `
     else               return mix(f, g, (t - 0.88) / 0.12);
   }
 
+  // sample the warp at a given (p, depth) — used both for color and for
+  // computing a fake surface normal so the strata read as 3D.
+  float warpAt(vec2 p, float depth) {
+    return fbm(vec2(p.x * 1.4, depth * 2.0 + uTime * 0.025));
+  }
+
   void main() {
     vec2 uv = vUv;
     float aspect = uRes.x / max(1.0, uRes.y);
@@ -76,26 +82,55 @@ const frag = /* glsl */ `
     float depth = 1.0 - uv.y;
 
     // tectonic warp (slow drift)
-    float warp = fbm(vec2(p.x * 1.4, depth * 2.0 + uTime * 0.025));
+    float warp = warpAt(p, depth);
     float warpedDepth = clamp(depth + warp * 0.06 - 0.03, 0.0, 1.0);
 
     vec3 col = palette(warpedDepth);
 
-    // strata bands
+    // ---- fake 3D shading via finite-difference normals ----
+    // sample warped-depth at neighbor pixels and use the slope as a proxy
+    // for surface relief. light from upper-left.
+    float eps = 0.0035;
+    float wL = clamp(depth + warpAt(vec2(p.x - eps, p.y), depth) * 0.06 - 0.03, 0.0, 1.0);
+    float wR = clamp(depth + warpAt(vec2(p.x + eps, p.y), depth) * 0.06 - 0.03, 0.0, 1.0);
+    float wU = clamp((depth - eps) + warpAt(p, depth - eps) * 0.06 - 0.03, 0.0, 1.0);
+    float wD = clamp((depth + eps) + warpAt(p, depth + eps) * 0.06 - 0.03, 0.0, 1.0);
+    vec3 normal = normalize(vec3((wR - wL) * 60.0, (wD - wU) * 60.0, 1.0));
+    vec3 lightDir = normalize(vec3(-0.55, -0.35, 0.85));
+    float lambert = max(0.0, dot(normal, lightDir));
+    float ambient = 0.62;
+    float lit = ambient + lambert * 0.55;
+    // subtle warm rim from below (mantle heat)
+    float rim = pow(max(0.0, dot(normal, vec3(0.0, 1.0, 0.2))), 3.0);
+    col *= lit;
+    col += vec3(0.95, 0.45, 0.18) * rim * 0.10 * smoothstep(0.4, 1.0, depth);
+
+    // strata bands — now modulated by lighting so they look embossed
     float bands = sin((warpedDepth) * 36.0);
     float bandLine = smoothstep(0.92, 1.0, abs(bands));
-    col = mix(col, col * 0.5, bandLine * 0.55);
+    col = mix(col, col * 0.45, bandLine * 0.6);
+    // micro-detail noise on the bands (rock texture)
+    float micro = fbm(p * 28.0 + vec2(0.0, depth * 4.0));
+    col *= 0.92 + micro * 0.16;
 
     // seismic shimmer — moving energy
     float seismic = fbm(vec2(p.x * 3.2 - uTime * 0.10, depth * 5.5 + uTime * 0.18));
     seismic = pow(seismic, 1.8);
     col += vec3(1.0, 0.62, 0.20) * seismic * 0.22 * smoothstep(0.05, 1.0, depth);
 
-    // h2 prospectivity hot pockets (deep zones)
-    float hot = smoothstep(0.50, 1.0, depth) *
-                fbm(vec2(p.x * 4.5 + 12.0, depth * 5.0 - uTime * 0.06));
-    hot = smoothstep(0.55, 0.85, hot);
-    col = mix(col, vec3(1.0, 0.45, 0.15), hot * 0.65);
+    // h2 prospectivity hot pockets — caustic-like, two counter-rotating
+    // octaves multiplied so the energy throbs and migrates.
+    float depthMask = smoothstep(0.50, 1.0, depth);
+    float h1 = fbm(vec2(p.x * 4.5 + 12.0 + uTime * 0.04, depth * 5.0 - uTime * 0.06));
+    float h2 = fbm(vec2(p.x * 6.2 - 4.0 - uTime * 0.07, depth * 6.4 + uTime * 0.05));
+    float hot = h1 * h2 * 1.6;
+    // throb
+    hot *= 0.8 + 0.4 * sin(uTime * 1.3 + p.x * 3.0);
+    hot = smoothstep(0.42, 0.78, hot) * depthMask;
+    col = mix(col, vec3(1.0, 0.45, 0.15), hot * 0.7);
+    // bright caustic core
+    float core = smoothstep(0.62, 0.80, hot);
+    col += vec3(1.0, 0.74, 0.32) * core * 0.55;
 
     // mouse-driven exploration: a soft glow follows the cursor
     vec2 m = vec2(uMouse.x * aspect, uMouse.y);
