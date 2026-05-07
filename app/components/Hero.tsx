@@ -1,8 +1,9 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import CrustFallback from "./CrustFallback";
+import DrillProbe from "./DrillProbe";
 
 const CrustCanvas = dynamic(() => import("./CrustCanvas"), { ssr: false });
 
@@ -91,8 +92,34 @@ function Boot() {
 }
 
 export default function Hero() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const [drill, setDrill] = useState<{
+    x: number;
+    y: number;
+    w: number;
+    h: number;
+  } | null>(null);
+  const [hasDrilled, setHasDrilled] = useState(false);
+
+  const handleClick = (e: React.MouseEvent<HTMLElement>) => {
+    const target = e.target as HTMLElement;
+    // Skip clicks on interactive elements (nav, buttons) and the existing drill UI.
+    if (target.closest("a, button, [data-no-drill], [data-drill-keep]")) return;
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    // Skip the top bar (~64px) and bottom telemetry (~48px) zones.
+    if (y < 72 || y > rect.height - 56) return;
+    setDrill({ x, y, w: rect.width, h: rect.height });
+    setHasDrilled(true);
+  };
+
   return (
-    <section className="relative w-full h-[100svh] min-h-[680px] overflow-hidden border-b hairline">
+    <section
+      ref={sectionRef}
+      onClick={handleClick}
+      className="relative w-full h-[100svh] min-h-[680px] overflow-hidden border-b hairline cursor-crosshair"
+    >
       <div className="absolute inset-0 z-0">
         <HeroVisual />
       </div>
@@ -104,6 +131,16 @@ export default function Hero() {
       <CornerMark className="top-4 right-4" flip />
       <CornerMark className="bottom-4 left-4" rotate />
       <CornerMark className="bottom-4 right-4" rotate flip />
+
+      {drill && (
+        <DrillProbe
+          x={drill.x}
+          y={drill.y}
+          width={drill.w}
+          height={drill.h}
+          onClose={() => setDrill(null)}
+        />
+      )}
 
       {/* top bar */}
       <div className="absolute top-0 left-0 right-0 z-20 px-6 md:px-10 py-5 flex items-center justify-between text-mono text-[11px] tracking-widest uppercase text-fg-dim">
@@ -122,7 +159,10 @@ export default function Hero() {
       </div>
 
       {/* main copy */}
-      <div className="absolute inset-0 z-20 flex flex-col justify-end px-6 md:px-10 pb-20 md:pb-28 pointer-events-none">
+      <div
+        className="absolute inset-0 z-20 flex flex-col justify-end px-6 md:px-10 pb-20 md:pb-28 pointer-events-none transition-opacity duration-500"
+        style={{ opacity: drill ? 0.18 : 1 }}
+      >
         <div className="max-w-5xl">
           <Boot />
           <h1 className="font-mono text-[clamp(2.4rem,7.2vw,7.5rem)] leading-[0.92] tracking-[-0.04em] text-fg">
@@ -131,6 +171,16 @@ export default function Hero() {
               for the earth&apos;s crust.
             </span>
           </h1>
+          <div
+            data-no-drill
+            className="mt-6 text-mono text-[11px] uppercase tracking-widest text-fg-dim transition-opacity duration-500"
+            style={{ opacity: hasDrilled ? 0 : 1 }}
+          >
+            <span className="text-accent">›</span> click anywhere on the crust{" "}
+            <span className="text-fg-mute">·</span>{" "}
+            <span className="text-fg">drill</span>
+            <span className="caret" />
+          </div>
         </div>
       </div>
 
