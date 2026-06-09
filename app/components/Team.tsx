@@ -19,7 +19,7 @@ const team: Member[] = [
   {
     name: "Andrew Dong",
     role: "co-founder · engineering",
-    cred: "platform engineer · formerly rubrik, recurse center",
+    cred: "platform engineer · formerly rubrik · university of chicago",
     href: "http://andrewlidong.xyz/",
     group: "founders",
   },
