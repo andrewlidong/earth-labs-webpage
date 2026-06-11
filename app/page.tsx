@@ -3,7 +3,6 @@ import SeismicTrace from "./components/SeismicTrace";
 import Thesis from "./components/Thesis";
 import Model from "./components/Model";
 import Numbers from "./components/Numbers";
-import Team from "./components/Team";
 import Footer from "./components/Footer";
 import { ScrollProgress } from "./components/ScrollProgress";
 import TrainingWidget from "./components/TrainingWidget";
@@ -17,7 +16,6 @@ export default function Home() {
       <Thesis />
       <Model />
       <Numbers />
-      <Team />
       <Footer />
       <TrainingWidget />
     </main>

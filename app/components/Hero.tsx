@@ -152,7 +152,6 @@ export default function Hero() {
         <div className="hidden md:flex items-center gap-6">
           <a href="#thesis" className="hover:text-fg transition-colors">thesis</a>
           <a href="#model" className="hover:text-fg transition-colors">model</a>
-          <a href="#team" className="hover:text-fg transition-colors">team</a>
           <a href="mailto:hello@earth-labs.ai" className="hover:text-fg transition-colors">contact</a>
         </div>
         <div className="text-fg-mute hidden lg:block">stealth · 2026</div>
