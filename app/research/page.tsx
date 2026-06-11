@@ -315,13 +315,6 @@ export default function ResearchPage() {
             inst="department of geosciences · utrecht university"
             note="natural hydrogen · serpentinization petrology"
           />
-          <TeamCard
-            name="Andrew Dong"
-            role="engineering"
-            inst="earth-labs"
-            note="platform · data pipelines · web"
-            href="http://andrewlidong.xyz/"
-          />
         </div>
         <div className="text-fg-mute text-mono text-[10px] uppercase tracking-widest mt-4">
           + postdoc · strong computing background · to be hired
