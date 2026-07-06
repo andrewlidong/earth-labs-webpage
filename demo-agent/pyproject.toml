@@ -1,0 +1,19 @@
+[project]
+name = "earthlabs-agent"
+version = "0.1.0"
+description = "earth-labs demo agent: exploration PDFs in, structured queryable data out"
+requires-python = ">=3.10"
+dependencies = [
+    "anthropic>=0.90",
+    "pydantic>=2.6",
+]
+
+[project.scripts]
+earthlabs-agent = "earthlabs_agent.cli:main"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["earthlabs_agent*"]
