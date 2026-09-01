@@ -24,12 +24,6 @@ export default function Footer() {
             <a href="/research" className="hover:text-accent transition-colors">
               research
             </a>
-            <a
-              href="/jennifer-h2.pdf"
-              className="hover:text-accent transition-colors"
-            >
-              proposal · pdf
-            </a>
           </div>
           <div className="flex items-center gap-2">
             <span className="w-1.5 h-1.5 bg-green pulse" />

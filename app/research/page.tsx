@@ -74,15 +74,6 @@ export default function ResearchPage() {
             conventional imaging.
           </p>
         </div>
-        <div className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3 text-mono text-[11px] uppercase tracking-widest">
-          <a
-            href="/jennifer-h2.pdf"
-            className="text-accent hover:text-accent-hot transition-colors inline-flex items-center gap-2"
-          >
-            ↓ download proposal · pdf · 1.2&nbsp;mb
-          </a>
-          <span className="text-fg-mute">11 pages · 47 references</span>
-        </div>
       </section>
 
       {/* objectives */}
@@ -278,19 +269,12 @@ export default function ResearchPage() {
       {/* team */}
       <Block num="06" label="project team">
         <h2 className="font-mono text-2xl md:text-4xl tracking-[-0.03em] leading-[1.1] text-fg">
-          oslo · austin · utrecht.{" "}
+          austin · utrecht.{" "}
           <span className="text-fg-dim">
             geophysics, hydrogen, critical minerals, ai/ml.
           </span>
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-[var(--border)] border hairline mt-2">
-          <TeamCard
-            name="John M. Aiken, PhD"
-            role="principal investigator"
-            inst="njord centre · university of oslo"
-            note="ai + subsurface geophysics · prior pi of serprateai"
-            href="https://johnspace.xyz/"
-          />
           <TeamCard
             name="Thorsten Becker, PhD"
             role="co-investigator"
@@ -357,15 +341,14 @@ export default function ResearchPage() {
       <section className="border-b hairline px-6 md:px-10 py-16 max-w-6xl mx-auto">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
           <div className="text-fg-dim max-w-2xl leading-relaxed">
-            The complete proposal — including references, work-package
-            timeline, and ethical-issues statement — is available as a single
-            PDF.
+            Interested in the full technical detail — work-package timeline,
+            benchmark protocols, data pipeline? Get in touch.
           </div>
           <a
-            href="/jennifer-h2.pdf"
+            href="mailto:hello@earth-labs.ai"
             className="self-start md:self-auto border hairline px-5 py-3 text-mono text-[11px] uppercase tracking-widest text-accent hover:bg-[var(--bg-elev)] transition-colors inline-flex items-center gap-2"
           >
-            ↓ download · jennifer-h2.pdf
+            hello@earth-labs.ai →
           </a>
         </div>
       </section>

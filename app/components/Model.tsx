@@ -42,12 +42,6 @@ export default function Model() {
         >
           → read the full method
         </Link>
-        <a
-          href="/jennifer-h2.pdf"
-          className="text-fg-dim hover:text-accent transition-colors"
-        >
-          ↓ proposal · pdf
-        </a>
       </div>
     </Section>
   );
