@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { Section } from "./Section";
 
 export default function Model() {
@@ -6,48 +5,52 @@ export default function Model() {
     <Section
       id="model"
       num="02"
-      label="the model"
+      label="the product"
       title={
         <>
-          jennifer-h2{" "}
+          the archive agent{" "}
           <span className="text-fg-dim">
-            — a multi-modal foundation model for the subsurface.
+            — point it at your file server. get answers.
           </span>
         </>
       }
     >
       <div className="text-mono text-[11px] uppercase tracking-widest text-fg-mute mb-8">
-        joint embedding neural network interpolation for earth resources · h2
+        ingest · classify · extract · validate · query
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <Card label="inputs">
-          gravity · magnetics · crustal thickness · bathymetry · 2D/3D seismic ·
-          borehole logs
+        <Card label="in">
+          any exploration pdf — well headers · core &amp; cuttings descriptions ·
+          survey reports · completion reports. no integration project, no
+          workflow changes.
         </Card>
-        <Card label="core" accent>
-          masked joint-embedding predictive transformer. self-supervised,
-          cross-modal, trained on a unified corpus of real-world heterogeneous data.
+        <Card label="agent" accent>
+          classifies every document, extracts each fact into
+          OSDU-compatible schemas, and runs physics-plausibility checks on
+          every value — a porosity of 85% in granite gets{" "}
+          flagged for review, not silently stored.
         </Card>
-        <Card label="output">
-          full posterior over subsurface properties. probabilistic zero-shot
-          inversion in <span className="text-fg">minutes, not weeks</span>.
+        <Card label="out">
+          a queryable store you talk to in plain english:{" "}
+          <span className="text-fg">
+            &ldquo;every well in this basin with sonic and density logs below
+            2,000&nbsp;m&rdquo;
+          </span>{" "}
+          — answered in seconds.
         </Card>
       </div>
 
       <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3 text-mono text-[11px] uppercase tracking-widest">
-        <Link
-          href="/research"
+        <a
+          href="mailto:hello@earth-labs.ai"
           className="text-accent hover:text-accent-hot transition-colors"
         >
-          → read the full method
-        </Link>
-        <a
-          href="/jennifer-h2.pdf"
-          className="text-fg-dim hover:text-accent transition-colors"
-        >
-          ↓ proposal · pdf
+          → request a pilot
         </a>
+        <span className="text-fg-mute">
+          deploys in your vpc · your data trains nothing
+        </span>
       </div>
     </Section>
   );

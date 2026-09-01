@@ -7,7 +7,7 @@ export default function Footer() {
             <div className="font-mono text-3xl md:text-4xl tracking-[-0.04em] text-fg">
               earth-labs<span className="text-accent">.</span>ai
             </div>
-            <div className="label mt-3">foundation models for earth&apos;s crust</div>
+            <div className="label mt-3">subsurface data, unlocked</div>
           </div>
 
           <a
@@ -21,19 +21,10 @@ export default function Footer() {
         <div className="mt-10 pt-6 border-t hairline flex flex-col md:flex-row items-start md:items-center justify-between gap-3 text-mono text-[10px] uppercase tracking-widest text-fg-mute">
           <div className="flex items-center gap-5">
             <span>© 2026 earth-labs</span>
-            <a href="/research" className="hover:text-accent transition-colors">
-              research
-            </a>
-            <a
-              href="/jennifer-h2.pdf"
-              className="hover:text-accent transition-colors"
-            >
-              proposal · pdf
-            </a>
           </div>
           <div className="flex items-center gap-2">
             <span className="w-1.5 h-1.5 bg-green pulse" />
-            <span>training · jennifer-h2</span>
+            <span>agent · online</span>
           </div>
         </div>
       </div>

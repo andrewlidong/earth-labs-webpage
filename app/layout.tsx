@@ -14,15 +14,16 @@ const jetbrains = JetBrains_Mono({
   display: "swap",
 });
 
+const DESCRIPTION =
+  "The archive agent — AI that turns exploration PDFs (well reports, core descriptions, surveys) into structured, queryable subsurface data. Point it at your file server. Get answers.";
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://earth-labs.ai"),
   title: "earth-labs.ai",
-  description:
-    "JENNIFER-H2 — a multi-modal foundation model for subsurface exploration. Probabilistic zero-shot inversion of crust properties from seismic, well-log, and gravity data.",
+  description: DESCRIPTION,
   openGraph: {
     title: "earth-labs.ai",
-    description:
-      "JENNIFER-H2 — a multi-modal foundation model for subsurface exploration. Probabilistic zero-shot inversion of crust properties from seismic, well-log, and gravity data.",
+    description: DESCRIPTION,
     siteName: "earth-labs",
     url: "https://earth-labs.ai",
     type: "website",
@@ -30,8 +31,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "earth-labs.ai",
-    description:
-      "JENNIFER-H2 — a multi-modal foundation model for subsurface exploration. Probabilistic zero-shot inversion of crust properties from seismic, well-log, and gravity data.",
+    description: DESCRIPTION,
   },
 };
 

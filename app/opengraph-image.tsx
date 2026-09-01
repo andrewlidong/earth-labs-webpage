@@ -64,8 +64,8 @@ export default async function OG() {
             color: "#8a9099",
           }}
         >
-          <div>jennifer-h2</div>
-          <div>subsurface foundation model</div>
+          <div>the archive agent</div>
+          <div>subsurface data, unlocked</div>
         </div>
       </div>
     ),
