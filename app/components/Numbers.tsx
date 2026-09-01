@@ -6,26 +6,26 @@ const stats = [
   {
     headlineNode: (
       <>
-        <Counter value={25} suffix="+ PB" duration={1500} />
+        <Counter value={12601} duration={1600} />
       </>
     ),
-    label: "subsurface corpus",
-    sub: "200,000+ boreholes · all major basins · unified",
+    label: "public wellbores · diskos alone",
+    sub: "one archive of many — iodp, namss, epos, boem, and every private file server",
   },
   {
-    headlineNode: <Counter value={0.86} decimals={2} duration={1600} />,
-    label: "R² · data reconstruction",
-    sub: "vs. lasso baseline 0.24 — 3× better",
+    headlineNode: <Counter value={10} suffix="s of PB" duration={1400} />,
+    label: "subsurface data worldwide",
+    sub: "seg-y · las · dlis · scanned reports — most of it unqueryable today",
   },
   {
-    headlineNode: <Counter value={0.9} decimals={2} duration={1600} />,
-    label: "AUC · lithology classification",
-    sub: "12 classes · cross-basin",
+    headlineNode: <span>$250k+</span>,
+    label: "the hire you don't make",
+    sub: "structured extraction at a fraction of one ml engineer's salary",
   },
   {
-    headlineNode: <span>ζ</span>,
-    label: "zero-shot generalization",
-    sub: "generalizes to unseen cores without retraining",
+    headlineNode: <Counter value={0} duration={800} />,
+    label: "workflow changes",
+    sub: "point at the file server · runs in your vpc · answers in days, not quarters",
   },
 ];
 
@@ -34,11 +34,11 @@ export default function Numbers() {
     <Section
       id="evidence"
       num="03"
-      label="evidence"
+      label="why now"
       title={
         <>
-          <span className="text-fg-dim">validation —</span> 2 PB ocean borehole
-          corpus, neurips 2026.
+          <span className="text-fg-dim">the archive problem,</span> by the
+          numbers.
         </>
       }
     >

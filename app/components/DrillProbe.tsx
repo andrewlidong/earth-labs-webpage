@@ -311,7 +311,7 @@ export default function DrillProbe({ x, y, width, height, onClose }: Props) {
           <div className="flex items-center gap-2">
             <span className="w-1.5 h-1.5 bg-accent pulse" />
             <span className="text-[10px] uppercase tracking-widest text-fg-dim">
-              jennifer-h2 · prediction
+              archive agent · demo
             </span>
           </div>
           <button
@@ -329,7 +329,7 @@ export default function DrillProbe({ x, y, width, height, onClose }: Props) {
         <div className="px-3 py-3 space-y-3">
           <div>
             <div className="text-[9px] uppercase tracking-widest text-fg-mute mb-1">
-              h₂ probability
+              extraction confidence
             </div>
             <div className="flex items-baseline gap-2">
               <span className="text-accent text-[28px] leading-none">

@@ -5,7 +5,6 @@ import Model from "./components/Model";
 import Numbers from "./components/Numbers";
 import Footer from "./components/Footer";
 import { ScrollProgress } from "./components/ScrollProgress";
-import TrainingWidget from "./components/TrainingWidget";
 
 export default function Home() {
   return (
@@ -17,7 +16,6 @@ export default function Home() {
       <Model />
       <Numbers />
       <Footer />
-      <TrainingWidget />
     </main>
   );
 }

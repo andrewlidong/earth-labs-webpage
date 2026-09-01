@@ -47,10 +47,10 @@ function Coords() {
 }
 
 const BOOT_LINES = [
-  "$ jennifer-h2 --warmup",
-  "loading weights … 1.8B params",
-  "corpus mounted · 25.0 PB",
-  "ready.",
+  "$ earthlabs-agent ingest //archive",
+  "scanning file server … 48,211 pdfs found",
+  "classify · extract · validate · index",
+  "ready. ask anything.",
 ];
 
 function Boot() {
@@ -147,11 +147,11 @@ export default function Hero() {
         <div className="flex items-center gap-3">
           <div className="w-2 h-2 bg-accent pulse" />
           <span>earth-labs</span>
-          <span className="text-fg-mute hidden sm:inline">/ subsurface foundation models</span>
+          <span className="text-fg-mute hidden sm:inline">/ subsurface data, unlocked</span>
         </div>
         <div className="hidden md:flex items-center gap-6">
-          <a href="#thesis" className="hover:text-fg transition-colors">thesis</a>
-          <a href="#model" className="hover:text-fg transition-colors">model</a>
+          <a href="#thesis" className="hover:text-fg transition-colors">problem</a>
+          <a href="#model" className="hover:text-fg transition-colors">product</a>
           <a href="mailto:hello@earth-labs.ai" className="hover:text-fg transition-colors">contact</a>
         </div>
         <div className="text-fg-mute hidden lg:block">stealth · 2026</div>
@@ -165,9 +165,9 @@ export default function Hero() {
         <div className="max-w-5xl">
           <Boot />
           <h1 className="font-mono text-[clamp(2.4rem,7.2vw,7.5rem)] leading-[0.92] tracking-[-0.04em] text-fg">
-            <span className="block hero-line hero-line-1">foundation models</span>
+            <span className="block hero-line hero-line-1">your archive is</span>
             <span className="block text-fg-dim hero-line hero-line-2">
-              for the earth&apos;s crust.
+              a dataset now.
             </span>
           </h1>
           <div
@@ -188,7 +188,7 @@ export default function Hero() {
         <Coords />
         <div className="flex items-center gap-2">
           <div className="w-1.5 h-1.5 bg-green pulse" />
-          <span>training · tacc/horizon</span>
+          <span>agent · online</span>
         </div>
       </div>
     </section>
